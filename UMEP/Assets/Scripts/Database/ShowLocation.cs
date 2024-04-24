@@ -68,7 +68,7 @@ public class ShowLocation : MonoBehaviour
 
             // Use the values from the LocationData object
             Vector3 position = new Vector3(location.xPos, location.yPos, location.zPos);
-            Quaternion rotation = Quaternion.Euler(location.xRot, location.yRot, location.zRot);
+            Quaternion rotation = Quaternion.Euler(0, location.yRot, 0);
 
             // Instantiate the prefab at the given position and rotation
             GameObject capsule = Instantiate(capsulePrefab, position, rotation);
