@@ -11,7 +11,8 @@ public class SetNav : MonoBehaviour
     private NavMeshPath path;
     private LineRenderer line;
 
-    public QrCodeRecenter QrCode;
+    [SerializeField]
+    private QrCodeRecenter QrCode;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +28,6 @@ public class SetNav : MonoBehaviour
         line.positionCount = path.corners.Length;
         line.SetPositions(path.corners);
 
-        if(QrCode.isActivated)
-        {
-            line.enabled = true;
-        } 
-        else
-        {
-            line.enabled = false;
-        }
+        line.enabled = QrCode.isActivated;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class ConnectionManager : MonoBehaviour
 {
-    public static string IP = "192.168.100.98"; // Make IP static
+    public static string IP = "192.168.1.105"; // Make IP static
     public GameObject popupPrefab;
     public Canvas canvas; // Reference to the canvas
     public LoadingManager loadingManager; // Reference to the other script
@@ -26,6 +26,7 @@ public class ConnectionManager : MonoBehaviour
             ShowPopup("Connection Error " + www.error);
             Debug.Log(www.error);
         }
+
         else
         {
             Debug.Log(www.downloadHandler.text);

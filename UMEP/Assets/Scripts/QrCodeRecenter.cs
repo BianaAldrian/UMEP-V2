@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;    
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using ZXing;
@@ -21,14 +22,26 @@ public class QrCodeRecenter : MonoBehaviour
     private Texture2D cameraImageTexture;
     private IBarcodeReader reader = new BarcodeReader();
 
+    [SerializeField]
+    private Button btn;
+
     public bool isActivated = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SetQRCodeRecenterTarget("1005");
-        }
+        /* if (Input.GetKeyDown(KeyCode.Space))
+         {
+             SetQRCodeRecenterTarget("1005");
+         }*/
+
+        //btn.onClick.AddListener(TaskOnClick);
+
+    }
+
+    private void TaskOnClick()
+    {
+        // Call the method in QrCodeRecenter script when the button is clicked
+        SetQRCodeRecenterTarget("1005");
     }
 
     private void OnEnable()
