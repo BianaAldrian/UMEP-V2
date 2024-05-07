@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Unity.Collections;    
+using Unity.Collections;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using ZXing;
+using TMPro;
 
 public class QrCodeRecenter : MonoBehaviour
 {
@@ -19,30 +20,18 @@ public class QrCodeRecenter : MonoBehaviour
     [SerializeField]
     private List<Target> navigationTargetObjects = new List<Target>();
 
-    private Texture2D cameraImageTexture;
-    private IBarcodeReader reader = new BarcodeReader();
-
     [SerializeField]
     private Button btn;
 
+    [SerializeField]
+    private TextMeshProUGUI Distance;
+
+    private Texture2D cameraImageTexture;
+    private IBarcodeReader reader = new BarcodeReader();
+
     public bool isActivated = false;
 
-    private void Update()
-    {
-        /* if (Input.GetKeyDown(KeyCode.Space))
-         {
-             SetQRCodeRecenterTarget("1005");
-         }*/
-
-        //btn.onClick.AddListener(TaskOnClick);
-
-    }
-
-    private void TaskOnClick()
-    {
-        // Call the method in QrCodeRecenter script when the button is clicked
-        SetQRCodeRecenterTarget("1005");
-    }
+    public bool IsActivated { get; internal set; }
 
     private void OnEnable()
     {
@@ -54,12 +43,23 @@ public class QrCodeRecenter : MonoBehaviour
         cameraManager.frameReceived -= OnCameraFrameReceived;
     }
 
+    private void Update()
+    {
+        btn.onClick.AddListener(setQR);
+    }
+
+    private void setQR()
+    {
+        SetQRCodeRecenterTarget("604", 1);
+    }
+
     private void OnCameraFrameReceived(ARCameraFrameEventArgs args)
     {
         if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
         {
             return;
         }
+
 
         var conversionParams = new XRCpuImage.ConversionParams
         {
@@ -89,6 +89,10 @@ public class QrCodeRecenter : MonoBehaviour
         // so you can dispose of the XRCpuImage. You must do this or it will leak resources.
         image.Dispose();
 
+        // Calculate camera resolution
+        int cameraWidth = conversionParams.outputDimensions.x;
+        int cameraHeight = conversionParams.outputDimensions.y;
+
         // At this point, you can process the image, pass it to a computer vision algorithm, etc.
         // In this example, you apply it to a texture to visualize it.
 
@@ -111,11 +115,39 @@ public class QrCodeRecenter : MonoBehaviour
         // Do something with the result.
         if (result != null)
         {
-            SetQRCodeRecenterTarget(result.Text);
+            // Calculate distance based on physical dimensions of QR code and camera FOV
+            float qrCodeWidthInMeters = 0.125f; // 12.5 cm converted to meters
+            float cameraHorizontalFOV = 78.734f; // Horizontal FOV in degrees
+            float cameraVerticalFOV = 120f; // Vertical FOV in degrees
+
+            // Estimate QR code size in pixels
+            float qrCodeWidthInPixels = result.ResultPoints[1].X - result.ResultPoints[0].X;
+            float qrCodeHeightInPixels = result.ResultPoints[2].Y - result.ResultPoints[1].Y;
+
+            // Calculate horizontal and vertical angles in radians
+            float angleWidth = Mathf.Deg2Rad * cameraHorizontalFOV * (qrCodeWidthInPixels / cameraWidth);
+            float angleHeight = Mathf.Deg2Rad * cameraVerticalFOV * (qrCodeHeightInPixels / cameraHeight);
+
+            // Calculate distance
+            float distanceHorizontal = (qrCodeWidthInMeters / 2) / Mathf.Tan(angleWidth / 2);
+            float distanceVertical = (qrCodeWidthInMeters / 2) / Mathf.Tan(angleHeight / 2);
+
+            // You can choose to use either horizontal or vertical distance, or combine them depending on your requirement
+            // For simplicity, let's just take the average
+            float distance = (distanceHorizontal + distanceVertical) / 2;
+
+            Debug.Log("Distance to QR code: " + distance + " meters");
+            Distance.text = distance + " meters";
+
+            if (distance != 0.0)
+            {
+                SetQRCodeRecenterTarget(result.Text, distance);
+            }
+            
         }
     }
 
-    private void SetQRCodeRecenterTarget(string v)
+    private void SetQRCodeRecenterTarget(string v, float distance)
     {
         Target currentTarget = navigationTargetObjects.Find(x => x.Name.ToLower().Equals(v.ToLower()));
         if (currentTarget != null)
@@ -123,10 +155,16 @@ public class QrCodeRecenter : MonoBehaviour
             // Reset position and rotation of ARSession
             session.Reset();
 
+            // Calculate offset direction based on the sessionOrigin's forward direction
+            Vector3 offsetDirection = -sessionOrigin.transform.forward; // Assuming you want to move in the opposite direction of forward
+
             // Add offset for recentering
-            sessionOrigin.transform.position = currentTarget.PositionObject.transform.position;
+            float offsetDistance = distance; // Adjust this value as needed
+            Vector3 newPosition = currentTarget.PositionObject.transform.position + offsetDirection * offsetDistance;
+            sessionOrigin.transform.position = newPosition;
             sessionOrigin.transform.rotation = currentTarget.PositionObject.transform.rotation;
             isActivated = true;
         }
     }
+
 }

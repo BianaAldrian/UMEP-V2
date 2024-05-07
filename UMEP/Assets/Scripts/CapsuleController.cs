@@ -19,11 +19,18 @@ public class CapsuleController : MonoBehaviour
 
     void Update()
     {
-        if (xrCamera != null)
+       /* if (xrCamera != null)
         {
-            // Set the capsule's rotation to match the camera's rotation
-            transform.rotation = xrCamera.transform.rotation;
-        }
+            // Get the camera's rotation
+            Quaternion cameraRotation = xrCamera.transform.rotation;
+
+            // Keep only the Y rotation
+            Quaternion yRotation = Quaternion.Euler(0, cameraRotation.eulerAngles.y, 0);
+
+            // Set the capsule's rotation to match only the Y rotation of the camera's rotation
+            transform.rotation = yRotation;
+        }*/
+
         // Get the position of the capsule
         Vector3 position = transform.position;
         // Get the rotation of the capsule
