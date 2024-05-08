@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InteractiveMapScript : MonoBehaviour
+public class LocationTrackScript : MonoBehaviour
 {
     public RectTransform NavDrawer;
     public float slideDuration = 0.5f; // Adjust this value to make the animation faster
@@ -59,7 +59,7 @@ public class InteractiveMapScript : MonoBehaviour
         {
             // Slide the navigation drawer in
             Debug.Log("Sliding in...");
-            targetPosition = new Vector2(-263f, 0f);
+            targetPosition = new Vector2(-283f, 0f);
             slideTimer = 0f;
             isSlideIn = true;
         }
@@ -72,8 +72,6 @@ public class InteractiveMapScript : MonoBehaviour
             isSlideIn = false;
         }
     }
-
-
     public void GoToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

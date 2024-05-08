@@ -5,31 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Splash Screen.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Login_Page.unity
     guid: a1a972b8632cb394e80648d6db227265
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UI/Home/Home.unity
     guid: e384757b3a928c64985dbc7e96085111
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UI/Interactive_map/InteractiveMap_Home.unity
     guid: 7aebe6d748e8a56408428a2e355149d3
   - enabled: 1
     path: Assets/Scenes/UI/About/About_Home.unity
     guid: 00f140aea7151784cb423c8bdcc81dda
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UI/Account_profiles/A&P_Home.unity
     guid: cfefa282d235b2b44ba5a18274cb0066
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UI/Evacuation_plan/Evacuation Plan_Home.unity
     guid: 9b5b1acb288edf942bae8bb6eae6bdd3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UI/Location_tracker/Location Tracker_Home.unity
     guid: c0432a843cb8acf4289971cc6a911db2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/UI/Safe_zone/Safe Zone_Home.unity
     guid: e04b6ff48f8feac4d823aa7359b20601
   m_configObjects:

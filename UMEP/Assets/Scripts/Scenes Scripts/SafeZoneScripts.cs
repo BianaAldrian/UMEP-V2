@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InteractiveMapScript : MonoBehaviour
+public class SafeZoneScripts : MonoBehaviour
 {
     public RectTransform NavDrawer;
     public float slideDuration = 0.5f; // Adjust this value to make the animation faster
@@ -72,8 +72,6 @@ public class InteractiveMapScript : MonoBehaviour
             isSlideIn = false;
         }
     }
-
-
     public void GoToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

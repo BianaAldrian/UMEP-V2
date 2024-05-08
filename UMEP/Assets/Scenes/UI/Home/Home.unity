@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1125,8 +1125,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 445165707}
+        m_TargetAssemblyTypeName: HomeScripts, Assembly-CSharp
         m_MethodName: GoToScene
         m_Mode: 5
         m_Arguments:
@@ -1134,7 +1134,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Safe Zone_Home (Student)
+          m_StringArgument: Safe Zone_Home
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &237509718
@@ -2452,8 +2452,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 445165707}
+        m_TargetAssemblyTypeName: HomeScripts, Assembly-CSharp
         m_MethodName: GoToScene
         m_Mode: 5
         m_Arguments:
@@ -2461,7 +2461,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Evacuation Plan_Home (Student)
+          m_StringArgument: Evacuation Plan_Home
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &531009895

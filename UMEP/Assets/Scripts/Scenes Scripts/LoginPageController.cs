@@ -18,8 +18,6 @@ public class LoginPageController : MonoBehaviour
     public TMP_InputField last_name;
     public TMP_InputField id_number1;
     public TMP_InputField password1;
-    public TMP_InputField phone;
-    public TMP_Dropdown college; // Modified to TMP_Dropdown
 
     public string next_scene;
     public GameObject LoginPanel;
@@ -34,7 +32,7 @@ public class LoginPageController : MonoBehaviour
     void AssignResetInputFieldColorListeners()
     {
         // Create an array of TMP_InputField references
-        TMP_InputField[] inputFields = { id_number, password, first_name, last_name, id_number1, password1, phone };
+        TMP_InputField[] inputFields = { id_number, password, first_name, last_name, id_number1, password1};
 
         // Assign the event listeners for input fields
         foreach (TMP_InputField inputField in inputFields)
@@ -43,12 +41,6 @@ public class LoginPageController : MonoBehaviour
             {
                 inputField.onValueChanged.AddListener(delegate { ResetInputFieldColor(inputField); });
             }
-        }
-
-        // Assign listener for dropdown
-        if (college != null)
-        {
-            college.onValueChanged.AddListener(delegate { ResetDropdownColor(college); });
         }
     }
 
@@ -85,7 +77,6 @@ public class LoginPageController : MonoBehaviour
     public void CheckSignInInputs()
     {
         TMP_InputField[] inputFields = { id_number, password};
-        TMP_Dropdown dropdown = college; // Already a TMP_Dropdown
 
         foreach (TMP_InputField inputField in inputFields)
         {
@@ -103,8 +94,7 @@ public class LoginPageController : MonoBehaviour
 
     public void CheckSignUpInputs()
     {
-        TMP_InputField[] inputFields = {first_name, last_name, id_number1, password1, phone };
-        TMP_Dropdown dropdown = college; // Already a TMP_Dropdown
+        TMP_InputField[] inputFields = {first_name, last_name, id_number1, password1 };
 
         foreach (TMP_InputField inputField in inputFields)
         {
@@ -115,15 +105,6 @@ public class LoginPageController : MonoBehaviour
                 inputField.textComponent.color = Color.red;
                 return; // Stop further processing if any field is empty
             }
-        }
-
-        // Validate the dropdown
-        if (dropdown != null && dropdown.value == 0) // Assuming the first option in dropdown is empty
-        {
-            // Change the color of the dropdown label to indicate error
-            TMP_Text dropdownLabel = dropdown.GetComponentInChildren<TMP_Text>();
-            dropdownLabel.color = Color.red;
-            return; // Stop further processing if the dropdown is not selected
         }
 
         StartCoroutine(SignUp());
@@ -197,16 +178,12 @@ public class LoginPageController : MonoBehaviour
         string userPassword = password1.text.Trim();
         string firstName = first_name.text.Trim();
         string lastName = last_name.text.Trim();
-        string userPhone = phone.text.Trim();
-        string userCollege = college.options[college.value].text; // Get the selected college text
 
         WWWForm form = new WWWForm();
         form.AddField("id_number", idNumber);
         form.AddField("password", userPassword);
         form.AddField("first_name", firstName);
         form.AddField("last_name", lastName);
-        form.AddField("phone", userPhone);
-        form.AddField("college", userCollege);
 
         // Check if the IP address is valid before creating the UnityWebRequest
         if (!string.IsNullOrEmpty(IP))
