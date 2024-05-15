@@ -59,7 +59,7 @@ public class LocationTrackScript : MonoBehaviour
         {
             // Slide the navigation drawer in
             Debug.Log("Sliding in...");
-            targetPosition = new Vector2(-283f, 0f);
+            targetPosition = new Vector2(-256f, 0f);
             slideTimer = 0f;
             isSlideIn = true;
         }

@@ -31,7 +31,7 @@ public class QrCodeRecenter : MonoBehaviour
 
     public bool isActivated = false;
 
-    public bool IsActivated { get; internal set; }
+    //public bool IsActivated { get; internal set; }
 
     private void OnEnable()
     {

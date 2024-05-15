@@ -89,7 +89,7 @@ public class CapsuleController : MonoBehaviour
         else
         {
             // Log the response
-            Debug.Log("Received: " + www.downloadHandler.text);
+            //Debug.Log("Received: " + www.downloadHandler.text);
         }
     }
 
