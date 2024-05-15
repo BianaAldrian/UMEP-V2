@@ -31,7 +31,6 @@ public class SetNav : MonoBehaviour
 
     void Reroute()
     {
-
     }
 
     void Update()
