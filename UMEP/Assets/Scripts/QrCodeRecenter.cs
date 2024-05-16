@@ -11,27 +11,17 @@ using TMPro;
 
 public class QrCodeRecenter : MonoBehaviour
 {
-    [SerializeField]
-    private ARSession session;
-    [SerializeField]
-    private XROrigin sessionOrigin;
-    [SerializeField]
-    private ARCameraManager cameraManager;
-    [SerializeField]
-    private List<Target> navigationTargetObjects = new List<Target>();
-
-    [SerializeField]
-    private Button btn;
-
-    [SerializeField]
-    private TextMeshProUGUI Distance;
+    [SerializeField] private ARSession session;
+    [SerializeField] private XROrigin sessionOrigin;
+    [SerializeField] private ARCameraManager cameraManager;
+    [SerializeField] private List<Target> navigationTargetObjects = new List<Target>();
+    [SerializeField] private Button btn;
+    [SerializeField] private TextMeshProUGUI Distance;
 
     private Texture2D cameraImageTexture;
     private IBarcodeReader reader = new BarcodeReader();
 
     public bool isActivated = false;
-
-    //public bool IsActivated { get; internal set; }
 
     private void OnEnable()
     {
