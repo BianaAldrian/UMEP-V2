@@ -40,7 +40,7 @@ public class QrCodeRecenter : MonoBehaviour
 
     private void setQR()
     {
-        SetQRCodeRecenterTarget("604", 1);
+        SetQRCodeRecenterTarget("1005", 1);
     }
 
     private void OnCameraFrameReceived(ARCameraFrameEventArgs args)

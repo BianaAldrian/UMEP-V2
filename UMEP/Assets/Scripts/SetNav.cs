@@ -19,8 +19,6 @@ public class SetNav : MonoBehaviour
     private NavMeshPath path;
     private LineRenderer line;
     private GameObject closestCube; // Store the reference to the closest cube
-    private GameObject secondClosestCube; // Store the reference to the second closest cube
-    private GameObject thirdClosestCube; // Store the reference to the third closest cube
     private GameObject previousClosestCube; // Store the reference to the previous closest cube
     private List<GameObject> sortedCubes = new List<GameObject>(); // Store the cubes sorted by distance
     private int cubeIndex = 0;
@@ -46,6 +44,9 @@ public class SetNav : MonoBehaviour
 
     void Update()
     {
+        reroute.gameObject.SetActive(QrCode.isActivated);
+        Distance.gameObject.SetActive(QrCode.isActivated);
+
         if (QrCode.isActivated)
         {
             if (cubeIndex == 0)
@@ -57,13 +58,7 @@ public class SetNav : MonoBehaviour
             if (sortedCubes.Count > 0)
             {
                 closestCube = sortedCubes[cubeIndex];
-               /* secondClosestCube = sortedCubes.Count > 1 ? sortedCubes[1] : null;
-                thirdClosestCube = sortedCubes.Count > 2 ? sortedCubes[2] : null;
-
-                Debug.Log("closestCube" + closestCube.name);
-                Debug.Log("secondClosestCube" + secondClosestCube.name);
-                Debug.Log("thirdClosestCube" + thirdClosestCube.name);*/
-
+              
                 ActivateCubes();
 
                 if (previousClosestCube != closestCube)
@@ -124,7 +119,6 @@ public class SetNav : MonoBehaviour
         int roundedDistance = Mathf.RoundToInt(pathDistance);
         // Debug.Log("Distance to NavTarget: " + roundedDistance);
 
-        Distance.gameObject.SetActive(QrCode.isActivated);
         Distance.text = roundedDistance.ToString() + " m";
     }
 }
