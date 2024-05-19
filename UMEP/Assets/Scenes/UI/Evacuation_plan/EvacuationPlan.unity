@@ -859,6 +859,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19629,7 +19630,6 @@ RectTransform:
   m_Children:
   - {fileID: 1511711654}
   - {fileID: 1722798772}
-  - {fileID: 902076205}
   - {fileID: 809366525}
   - {fileID: 709333848}
   - {fileID: 1904166731}
