@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using Unity.AI.Navigation;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 
 public class SetNav : MonoBehaviour
 {
@@ -14,32 +13,22 @@ public class SetNav : MonoBehaviour
     [SerializeField] private NavMeshSurface navSurface;
     [SerializeField] private GameObject[] cubes;
     [SerializeField] private GameObject capsule;
-    [SerializeField] private TextMeshProUGUI Distance;
 
     private NavMeshPath path;
     private LineRenderer line;
     private GameObject closestCube; // Store the reference to the closest cube
     private GameObject previousClosestCube; // Store the reference to the previous closest cube
     private List<GameObject> sortedCubes = new List<GameObject>(); // Store the cubes sorted by distance
-    private int cubeIndex = 0;
 
     void Start()
     {
         path = new NavMeshPath();
         line = transform.GetComponent<LineRenderer>();
-        reroute.onClick.AddListener(Reroute);
+        reroute.onClick.AddListener(BakeNavMesh);
     }
 
     void Reroute()
     {
-        cubeIndex++;
-        if (cubeIndex >= sortedCubes.Count)
-        {
-            // Handle the case when cubeIndex reaches the size of sortedCubes
-            cubeIndex = 0; // For example, reset cubeIndex to 0
-            //Debug.Log("cubeIndex reset to 0");
-        }
-        //Debug.Log("Current cubeIndex: " + cubeIndex);
     }
 
     void Update()
@@ -49,16 +38,18 @@ public class SetNav : MonoBehaviour
 
         if (QrCode.isActivated)
         {
-            if (cubeIndex == 0)
-            { 
-               FindAndSortCubesByDistance();
-            }
-            
+            FindAndSortCubesByDistance();
 
             if (sortedCubes.Count > 0)
             {
-                closestCube = sortedCubes[cubeIndex];
-              
+                closestCube = sortedCubes[0];
+                secondClosestCube = sortedCubes.Count > 1 ? sortedCubes[1] : null;
+                thirdClosestCube = sortedCubes.Count > 2 ? sortedCubes[2] : null;
+
+                Debug.Log("closestCube" + closestCube.name);
+                Debug.Log("secondClosestCube" + secondClosestCube.name);
+                Debug.Log("thirdClosestCube" + thirdClosestCube.name);
+
                 ActivateCubes();
 
                 if (previousClosestCube != closestCube)
@@ -68,7 +59,6 @@ public class SetNav : MonoBehaviour
                 }
 
                 DrawPathToTarget(NavTarget.transform.position);
-                DisplayDistanceToNavTarget();
             }
         }
     }
@@ -82,7 +72,7 @@ public class SetNav : MonoBehaviour
     {
         for (int i = 0; i < sortedCubes.Count; i++)
         {
-            sortedCubes[i].SetActive(i != cubeIndex); // Activate all cubes except the closest one
+            sortedCubes[i].SetActive(i != 0); // Activate all cubes except the closest one
         }
     }
 
