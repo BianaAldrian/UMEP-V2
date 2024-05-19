@@ -53801,7 +53801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Aldrian Escarlan
+  m_text: Ezequel Lingal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83fd24e45c1be0c4b94fedb1b762a529, type: 2}
   m_sharedMaterial: {fileID: -2651214982480111571, guid: 83fd24e45c1be0c4b94fedb1b762a529, type: 2}
