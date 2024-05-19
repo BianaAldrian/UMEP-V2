@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ezequel Lingal
+  m_text: Aldrian Escarlan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 83fd24e45c1be0c4b94fedb1b762a529, type: 2}
   m_sharedMaterial: {fileID: -2651214982480111571, guid: 83fd24e45c1be0c4b94fedb1b762a529, type: 2}
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0a8563d7738ed547b1718cd2e46bb7d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2126cd3b0af2ebe4e840d0ebd2f6c3cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1138,8 +1138,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 396948769}
-        m_TargetAssemblyTypeName: SafeZoneScripts, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EvacPlanScript, Assembly-CSharp
         m_MethodName: GoToScene
         m_Mode: 5
         m_Arguments:
@@ -2730,7 +2730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180.428}
   m_AnchorMin: {x: 0.7326732, y: 0.5}
   m_AnchorMax: {x: 0.7326732, y: 0.5}
-  m_AnchoredPosition: {x: 310.86, y: 790}
+  m_AnchoredPosition: {x: 310, y: 906.9376}
   m_SizeDelta: {x: 166.9772, y: 172.6962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1864676132
@@ -3184,8 +3184,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 396948769}
-        m_TargetAssemblyTypeName: SafeZoneScripts, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: EvacPlanScript, Assembly-CSharp
         m_MethodName: GoToScene
         m_Mode: 5
         m_Arguments:
